@@ -253,6 +253,138 @@
             
               
                 
+                <a class="post-title-link" href="/2018/01/19/VoiceBroadcast/" itemprop="url">
+                  语音播报
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-01-19T11:05:00+08:00" content="2018-01-19">
+              2018-01-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/01/19/VoiceBroadcast/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/01/19/VoiceBroadcast/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2018/01/19/VoiceBroadcast/" class="leancloud_visitors" data-flag-title="语音播报">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>　　最近接手一个新项目是做扫码支付给商户使用，在收款时需要能够语音播报，收款有两种方式，一种是扫别人的支付宝或者微信付款码，另一种是别人用支付宝或者微信扫系统为商户生成的付款码，简单讲就是扫码和被扫。</p>
+<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p>　　扫码时app在前台运行，可以通过收款成功回调进行语音播报；被扫时，商户更多的是将付款码打印出来给顾客扫码，此时app状态不定，可能在前台运行，可能在后台，还有可能在kill状态，所以针对被扫，收款成功回调不能满足要求，此时的解决办法就是推送了。
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2018/01/19/VoiceBroadcast/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/09/27/AvoidAuditing/" itemprop="url">
                   上架到App Store时，如何规避审查
                 </a>
@@ -462,7 +594,7 @@
 
       
         
-          <p>　　首先讲讲pod setup的作用原理是什么，pod setup本质其实就是将<a href="https://github.com/CocoaPods/Specs" target="_blank" rel="noopener">https://github.com/CocoaPods/Specs</a>上的项目克隆到/Users/用户名/.cocoapods/repos目录下，若此目录下已经有这个项目，使用pod setup命令则会将项目更新到最新的状态。
+          <p>　　首先讲讲pod setup的作用原理是什么，pod setup本质其实就是将<a href="https://github.com/CocoaPods/Specs">https://github.com/CocoaPods/Specs</a>上的项目克隆到/Users/用户名/.cocoapods/repos目录下，若此目录下已经有这个项目，使用pod setup命令则会将项目更新到最新的状态。
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/11/01/podsetupfail/#more" rel="contents">
               阅读全文 &raquo;
@@ -725,7 +857,7 @@
       
         
           <h4 id="NSNotification"><a href="#NSNotification" class="headerlink" title="NSNotification"></a>NSNotification</h4><p>　　打开Xcode，进入NSNotification，你可以看到</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@interface NSNotification : NSObject &lt;NSCopying, NSCoding&gt;</span><br><span class="line"></span><br><span class="line">@property (readonly, copy) NSString *name;</span><br><span class="line">@property (nullable, readonly, retain) id object;</span><br><span class="line">@property (nullable, readonly, copy) NSDictionary *userInfo;</span><br><span class="line"></span><br><span class="line">- (instancetype)initWithName:(NSString *)name object:(nullable id)object userInfo:(nullable NSDictionary *)userInfo NS_AVAILABLE(10_6, 4_0) NS_DESIGNATED_INITIALIZER;</span><br><span class="line">- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@interface NSNotification (NSNotificationCreation)</span><br><span class="line"></span><br><span class="line">+ (instancetype)notificationWithName:(NSString *)aName object:(nullable id)anObject;</span><br><span class="line">+ (instancetype)notificationWithName:(NSString *)aName object:(nullable id)anObject userInfo:(nullable NSDictionary *)aUserInfo;</span><br><span class="line"></span><br><span class="line">- (instancetype)init /*NS_UNAVAILABLE*/;	/* do not invoke; not a valid initializer for this class */</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">NSNotification</span> : <span class="title">NSObject</span> &lt;<span class="title">NSCopying</span>, <span class="title">NSCoding</span>&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">readonly</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *name;</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nullable</span>, <span class="keyword">readonly</span>, <span class="keyword">retain</span>) <span class="keyword">id</span> object;</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nullable</span>, <span class="keyword">readonly</span>, <span class="keyword">copy</span>) <span class="built_in">NSDictionary</span> *userInfo;</div><div class="line"></div><div class="line">- (<span class="keyword">instancetype</span>)initWithName:(<span class="built_in">NSString</span> *)name object:(<span class="keyword">nullable</span> <span class="keyword">id</span>)object userInfo:(<span class="keyword">nullable</span> <span class="built_in">NSDictionary</span> *)userInfo <span class="built_in">NS_AVAILABLE</span>(<span class="number">10</span>_6, <span class="number">4</span>_0) <span class="built_in">NS_DESIGNATED_INITIALIZER</span>;</div><div class="line">- (<span class="keyword">nullable</span> <span class="keyword">instancetype</span>)initWithCoder:(<span class="built_in">NSCoder</span> *)aDecoder <span class="built_in">NS_DESIGNATED_INITIALIZER</span>;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">NSNotification</span> (<span class="title">NSNotificationCreation</span>)</span></div><div class="line"></div><div class="line">+ (<span class="keyword">instancetype</span>)notificationWithName:(<span class="built_in">NSString</span> *)aName object:(<span class="keyword">nullable</span> <span class="keyword">id</span>)anObject;</div><div class="line">+ (<span class="keyword">instancetype</span>)notificationWithName:(<span class="built_in">NSString</span> *)aName object:(<span class="keyword">nullable</span> <span class="keyword">id</span>)anObject userInfo:(<span class="keyword">nullable</span> <span class="built_in">NSDictionary</span> *)aUserInfo;</div><div class="line"></div><div class="line">- (<span class="keyword">instancetype</span>)init <span class="comment">/*NS_UNAVAILABLE*/</span>;	<span class="comment">/* do not invoke; not a valid initializer for this class */</span></div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/10/21/NSNotification/#more" rel="contents">
               阅读全文 &raquo;
@@ -991,7 +1123,7 @@
         
           <p>　　很早就听过Reveal，对iOS Developer来说简直是一款神器。这次有时间打算体验一下Reveal，于是去官网看了下，没有中文使用文档，google了一下使用方法，博客里写得大同小异，有的简直就是一模一样，关键是有些还讲不清楚。于是，就产生了下面的文章。</p>
 <hr>
-<p>　　目前计划翻译Reveal官网 <a href="http://support.revealapp.com/kb/getting-started" target="_blank" rel="noopener">Konowledege Base/Getting Started</a>下的八篇文章，因为水平有限，请大家多多指教，如有错误请帮忙指出。<br>　　以下内容翻译自<a href="http://support.revealapp.com/kb/getting-started/reveal-integration-guide" target="_blank" rel="noopener">Reveal Integration Guide</a>，官方更新于2016-9-23。文中链接暂时链接到官方英文文档，后续会慢慢更新。<br>
+<p>　　目前计划翻译Reveal官网 <a href="http://support.revealapp.com/kb/getting-started">Konowledege Base/Getting Started</a>下的八篇文章，因为水平有限，请大家多多指教，如有错误请帮忙指出。<br>　　以下内容翻译自<a href="http://support.revealapp.com/kb/getting-started/reveal-integration-guide">Reveal Integration Guide</a>，官方更新于2016-9-23。文中链接暂时链接到官方英文文档，后续会慢慢更新。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/10/13/RevealIntegrationGuide/#more" rel="contents">
               阅读全文 &raquo;
@@ -1330,7 +1462,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

@@ -334,24 +334,24 @@
       
         <p>　　很早就听过Reveal，对iOS Developer来说简直是一款神器。这次有时间打算体验一下Reveal，于是去官网看了下，没有中文使用文档，google了一下使用方法，博客里写得大同小异，有的简直就是一模一样，关键是有些还讲不清楚。于是，就产生了下面的文章。</p>
 <hr>
-<p>　　目前计划翻译Reveal官网 <a href="http://support.revealapp.com/kb/getting-started" target="_blank" rel="noopener">Konowledege Base/Getting Started</a>下的八篇文章，因为水平有限，请大家多多指教，如有错误请帮忙指出。<br>　　以下内容翻译自<a href="http://support.revealapp.com/kb/getting-started/reveal-integration-guide" target="_blank" rel="noopener">Reveal Integration Guide</a>，官方更新于2016-9-23。文中链接暂时链接到官方英文文档，后续会慢慢更新。<br><a id="more"></a></p>
+<p>　　目前计划翻译Reveal官网 <a href="http://support.revealapp.com/kb/getting-started" target="_blank" rel="external">Konowledege Base/Getting Started</a>下的八篇文章，因为水平有限，请大家多多指教，如有错误请帮忙指出。<br>　　以下内容翻译自<a href="http://support.revealapp.com/kb/getting-started/reveal-integration-guide" target="_blank" rel="external">Reveal Integration Guide</a>，官方更新于2016-9-23。文中链接暂时链接到官方英文文档，后续会慢慢更新。<br><a id="more"></a></p>
 <h4 id="Reveal集成指南"><a href="#Reveal集成指南" class="headerlink" title="Reveal集成指南"></a>Reveal集成指南</h4><p>要使用Reveal查看iOS或tvOS应用或者app，你必须先将其与Reveal Server框架链接。</p>
 <p>我们支持以下几种集成方法：</p>
 <ul>
-<li><a href="http://support.revealapp.com/kb/getting-started/integrating-using-cocoapods" target="_blank" rel="noopener">使用CocoaPods</a>是将Reveal Server集成到在设备和模拟器上运行的项目最简单的方法。它也适用于你团队的所有成员。</li>
-<li><a href="http://support.revealapp.com/kb/getting-started/load-the-reveal-server-via-an-xcode-breakpoint" target="_blank" rel="noopener">通过Xcode断点加载Reveal Server</a>，你可以快速将Reveal Server集成到你的Simulator版本中，而无需更改项目中的任何内容。</li>
-<li><a href="http://support.revealapp.com/kb/getting-started/integrating-reveal-via-linking" target="_blank" rel="noopener">将Reveal Server框架链接到你的应用程序</a>中就像我们的CocoaPods集成一样，但不依赖于CocoaPods。</li>
-<li>如果你正在构建iOS app，我们会提供<a href="http://support.revealapp.com/kb/getting-started/integrating-reveal-with-app-extensions" target="_blank" rel="noopener">其他说明</a>，因为app的集成过程存在一些细微差异。</li>
+<li><a href="http://support.revealapp.com/kb/getting-started/integrating-using-cocoapods" target="_blank" rel="external">使用CocoaPods</a>是将Reveal Server集成到在设备和模拟器上运行的项目最简单的方法。它也适用于你团队的所有成员。</li>
+<li><a href="http://support.revealapp.com/kb/getting-started/load-the-reveal-server-via-an-xcode-breakpoint" target="_blank" rel="external">通过Xcode断点加载Reveal Server</a>，你可以快速将Reveal Server集成到你的Simulator版本中，而无需更改项目中的任何内容。</li>
+<li><a href="http://support.revealapp.com/kb/getting-started/integrating-reveal-via-linking" target="_blank" rel="external">将Reveal Server框架链接到你的应用程序</a>中就像我们的CocoaPods集成一样，但不依赖于CocoaPods。</li>
+<li>如果你正在构建iOS app，我们会提供<a href="http://support.revealapp.com/kb/getting-started/integrating-reveal-with-app-extensions" target="_blank" rel="external">其他说明</a>，因为app的集成过程存在一些细微差异。</li>
 </ul>
 <h5 id="集成Reveal最低要求"><a href="#集成Reveal最低要求" class="headerlink" title="集成Reveal最低要求"></a>集成Reveal最低要求</h5><p>Reveal集成要求 macOS 10.11+，iOS 8+ or tvOS 9+ 和 Xcode 7+。</p>
 <h5 id="从Reveal-1-x升级"><a href="#从Reveal-1-x升级" class="headerlink" title="从Reveal 1.x升级"></a>从Reveal 1.x升级</h5><p>捆绑框架的名称和路径在Reveal 2中已更改。</p>
 <p>如果你在使用CocoaPods，请确保Podfile看起来和我们的建议类似，然后运行pod install。</p>
 <p>如果你在使用其他集成方法中的一种，从Reveal 1.6.x更新为Reveal 2.x会是一个简单的过程，从你的项目中删除对libReveal.dylib或Reveal.framework的任何引用，然后按照说明进行操作链接框架或动态加载上面链接的框架。</p>
 <h5 id="更多信息"><a href="#更多信息" class="headerlink" title="更多信息"></a>更多信息</h5><ul>
-<li><a href="http://support.revealapp.com/kb/getting-started/manually-stopping-and-starting-the-reveal-server" target="_blank" rel="noopener">手动停止和启动Reveal Sever</a>。</li>
-<li><a href="http://support.revealapp.com/kb/getting-started/remove-reveal-from-your-xcode-project" target="_blank" rel="noopener">从你的工程中移除Reveal</a>。</li>
+<li><a href="http://support.revealapp.com/kb/getting-started/manually-stopping-and-starting-the-reveal-server" target="_blank" rel="external">手动停止和启动Reveal Sever</a>。</li>
+<li><a href="http://support.revealapp.com/kb/getting-started/remove-reveal-from-your-xcode-project" target="_blank" rel="external">从你的工程中移除Reveal</a>。</li>
 </ul>
-<p>我们在我们的<a href="http://support.revealapp.com/kb" target="_blank" rel="noopener">在线Knowledge Base</a>提供了有关一些主题的更多信息。</p>
+<p>我们在我们的<a href="http://support.revealapp.com/kb" target="_blank" rel="external">在线Knowledge Base</a>提供了有关一些主题的更多信息。</p>
 <h5 id="重要信息"><a href="#重要信息" class="headerlink" title="重要信息"></a>重要信息</h5><ul>
 <li><p><strong>不要将app链接到Reveal库。</strong>Reveal暴露了你的app内部，可能会导致你的应用程序被苹果审查团队拒绝。Reveal仅用于内部开发和调试目的。</p>
 </li>
@@ -362,7 +362,7 @@
 <li><p><strong>Reveal可以使用Bonjour连接正在运行的iOS或tvOS应用程序。</strong> 如果你在设备上运行iOS或tvOS应用程序，并希望使用Bonjour进行连接，则需要与Reveal Mac应用程序位于同一网络才能连接。 如果你在连接到你的应用程序时遇到任何问题，请检查你的防火墙和代理设置，以确保它们不会阻止通信，或者使用数据线将你的设备连接到你的Mac。</p>
 </li>
 </ul>
-<p><strong>欢迎吐槽，同时也欢迎转载，如转载请保留原文地址：<br><a href="https://walkstep.github.io/2016/10/13/RevealIntegrationGuide" target="_blank" rel="noopener">https://walkstep.github.io/2016/10/13/RevealIntegrationGuide</a></strong></p>
+<p><strong>欢迎吐槽，同时也欢迎转载，如转载请保留原文地址：<br><a href="https://walkstep.github.io/2016/10/13/RevealIntegrationGuide" target="_blank" rel="external">https://walkstep.github.io/2016/10/13/RevealIntegrationGuide</a></strong></p>
 <p><strong>更新于2016年10月13日</strong></p>
 
       
@@ -480,7 +480,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
