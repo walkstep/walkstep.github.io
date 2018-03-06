@@ -516,6 +516,139 @@
             
               
                 
+                <a class="post-title-link" href="/2017/03/06/CopyKey/" itemprop="url">
+                  关于copy的两个问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-06T16:05:50+08:00" content="2017-03-06">
+              2017-03-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/03/06/CopyKey/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/06/CopyKey/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/03/06/CopyKey/" class="leancloud_visitors" data-flag-title="关于copy的两个问题">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h5 id="1-property声明NSString时为什么需要使用copy，使用strong会有什么问题？"><a href="#1-property声明NSString时为什么需要使用copy，使用strong会有什么问题？" class="headerlink" title="1.@property声明NSString时为什么需要使用copy，使用strong会有什么问题？"></a>1.@property声明NSString时为什么需要使用copy，使用strong会有什么问题？</h5><p>　　NSMutableString是NSString的子类，父类指针可以指向子类对象，而使用copy可以让父类对象不受子类对象影响，不管给NSString传一个不可变对象还是可变对象，都能保证NSString自身持有一个不可变副本。<br>　　如果使用strong，我们可以看下代码</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> ()</span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSString</span> *string;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</div><div class="line">    [<span class="keyword">super</span> viewDidLoad];</div><div class="line">    </div><div class="line">    <span class="built_in">NSMutableString</span> *stringM = [<span class="built_in">NSMutableString</span> stringWithString:<span class="string">@"The Flash"</span>];</div><div class="line">    <span class="keyword">self</span>.string = stringM;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"string:%@"</span>, <span class="keyword">self</span>.string);</div><div class="line">    </div><div class="line">    [stringM appendString:<span class="string">@"1234"</span>];</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"string:%@"</span>, <span class="keyword">self</span>.string);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>打印的日志</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">2017<span class="selector-tag">-03-06</span> 16<span class="selector-pseudo">:43</span><span class="selector-pseudo">:45.155362+0800</span> <span class="selector-tag">Test</span><span class="selector-attr">[4483:168365]</span> <span class="selector-tag">string</span><span class="selector-pseudo">:The</span> <span class="selector-tag">Flash</span></div><div class="line">2017<span class="selector-tag">-03-06</span> 16<span class="selector-pseudo">:43</span><span class="selector-pseudo">:45.155546+0800</span> <span class="selector-tag">Test</span><span class="selector-attr">[4483:168365]</span> <span class="selector-tag">string</span><span class="selector-pseudo">:The</span> <span class="selector-tag">Flash1234</span></div></pre></td></tr></table></figure>
+<p>所以使用strong的话，如果这个属性指向一个可变对象，当可变对象修改时，这个属性值也会被修改。</p>
+<h5 id="2-property-nonatomic-copy-NSMutableString-strM-这种写法会出什么问题"><a href="#2-property-nonatomic-copy-NSMutableString-strM-这种写法会出什么问题" class="headerlink" title="2.@property (nonatomic, copy) NSMutableString *strM;这种写法会出什么问题?"></a>2.@property (nonatomic, copy) NSMutableString *strM;这种写法会出什么问题?</h5>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/01/podsetupfail/" itemprop="url">
                   解决pod setup缓慢及失败的另一种方式
                 </a>
@@ -1462,7 +1595,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

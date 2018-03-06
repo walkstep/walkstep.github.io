@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="历程," />
+  <meta name="keywords" content="iOS," />
 
 
 
@@ -84,22 +84,19 @@
 
 
 
-<meta name="description" content="终于拥有自己的个人博客了！
-
-　　闲时比较喜欢看别人的博客，在学习知识的同时，也在心里为博主默默点赞。一是钦佩作者的毅力，能够在忙完工作之后还长期更新博客；二是感叹作者的文采，一篇好的博客，并非一定是长篇大论，更重要的在于是否简单易懂，能做到这一点比较不容易。">
+<meta name="description" content="1.@property声明NSString时为什么需要使用copy，使用strong会有什么问题？　　NSMutableString是NSString的子类，父类指针可以指向子类对象，而使用copy可以让父类对象不受子类对象影响，不管给NSString传一个不可变对象还是可变对象，都能保证NSString自身持有一个不可变副本。　　如果使用strong，我们可以看下代码
+1234567891011">
 <meta property="og:type" content="article">
-<meta property="og:title" content="写在最前面">
-<meta property="og:url" content="http://yoursite.com/2016/10/08/first/index.html">
+<meta property="og:title" content="关于copy的两个问题">
+<meta property="og:url" content="http://yoursite.com/2017/03/06/CopyKey/index.html">
 <meta property="og:site_name" content="WalkStep's Blog">
-<meta property="og:description" content="终于拥有自己的个人博客了！
-
-　　闲时比较喜欢看别人的博客，在学习知识的同时，也在心里为博主默默点赞。一是钦佩作者的毅力，能够在忙完工作之后还长期更新博客；二是感叹作者的文采，一篇好的博客，并非一定是长篇大论，更重要的在于是否简单易懂，能做到这一点比较不容易。">
-<meta property="og:updated_time" content="2017-09-25T09:31:57.000Z">
+<meta property="og:description" content="1.@property声明NSString时为什么需要使用copy，使用strong会有什么问题？　　NSMutableString是NSString的子类，父类指针可以指向子类对象，而使用copy可以让父类对象不受子类对象影响，不管给NSString传一个不可变对象还是可变对象，都能保证NSString自身持有一个不可变副本。　　如果使用strong，我们可以看下代码
+1234567891011">
+<meta property="og:updated_time" content="2018-03-06T08:48:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="写在最前面">
-<meta name="twitter:description" content="终于拥有自己的个人博客了！
-
-　　闲时比较喜欢看别人的博客，在学习知识的同时，也在心里为博主默默点赞。一是钦佩作者的毅力，能够在忙完工作之后还长期更新博客；二是感叹作者的文采，一篇好的博客，并非一定是长篇大论，更重要的在于是否简单易懂，能做到这一点比较不容易。">
+<meta name="twitter:title" content="关于copy的两个问题">
+<meta name="twitter:description" content="1.@property声明NSString时为什么需要使用copy，使用strong会有什么问题？　　NSMutableString是NSString的子类，父类指针可以指向子类对象，而使用copy可以让父类对象不受子类对象影响，不管给NSString传一个不可变对象还是可变对象，都能保证NSString自身持有一个不可变副本。　　如果使用strong，我们可以看下代码
+1234567891011">
 
 
 
@@ -117,7 +114,7 @@
   };
 </script>
 
-  <title> 写在最前面 | WalkStep's Blog </title>
+  <title> 关于copy的两个问题 | WalkStep's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -257,7 +254,7 @@
             
             
               
-                写在最前面
+                关于copy的两个问题
               
             
           </h1>
@@ -269,8 +266,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-08T15:53:36+08:00" content="2016-10-08">
-              2016-10-08
+            <time itemprop="dateCreated" datetime="2017-03-06T16:05:50+08:00" content="2017-03-06">
+              2017-03-06
             </time>
           </span>
 
@@ -283,8 +280,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/闲谈/" itemprop="url" rel="index">
-                    <span itemprop="name">闲谈</span>
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
                   </a>
                 </span>
 
@@ -299,8 +296,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/08/first/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/08/first/" itemprop="commentsCount"></span>
+                <a href="/2017/03/06/CopyKey/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/06/CopyKey/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -310,7 +307,7 @@
 
           
           
-             <span id="/2016/10/08/first/" class="leancloud_visitors" data-flag-title="写在最前面">
+             <span id="/2017/03/06/CopyKey/" class="leancloud_visitors" data-flag-title="关于copy的两个问题">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -332,10 +329,12 @@
       
 
       
-        <p>　终于拥有自己的个人博客了！</p>
-<hr>
-<p>　　闲时比较喜欢看别人的博客，在学习知识的同时，也在心里为博主默默点赞。一是钦佩作者的毅力，能够在忙完工作之后还长期更新博客；二是感叹作者的文采，一篇好的博客，并非一定是长篇大论，更重要的在于是否简单易懂，能做到这一点比较不容易。<a id="more"></a><br>　　现在自己也拥有了个人博客，希望记录下自己成长学习的脚步，当回首时可以看到岁月的痕迹，也希望自己能成为一名优秀的博主。</p>
-
+        <h5 id="1-property声明NSString时为什么需要使用copy，使用strong会有什么问题？"><a href="#1-property声明NSString时为什么需要使用copy，使用strong会有什么问题？" class="headerlink" title="1.@property声明NSString时为什么需要使用copy，使用strong会有什么问题？"></a>1.@property声明NSString时为什么需要使用copy，使用strong会有什么问题？</h5><p>　　NSMutableString是NSString的子类，父类指针可以指向子类对象，而使用copy可以让父类对象不受子类对象影响，不管给NSString传一个不可变对象还是可变对象，都能保证NSString自身持有一个不可变副本。<br>　　如果使用strong，我们可以看下代码</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> ()</span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSString</span> *string;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</div><div class="line">    [<span class="keyword">super</span> viewDidLoad];</div><div class="line">    </div><div class="line">    <span class="built_in">NSMutableString</span> *stringM = [<span class="built_in">NSMutableString</span> stringWithString:<span class="string">@"The Flash"</span>];</div><div class="line">    <span class="keyword">self</span>.string = stringM;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"string:%@"</span>, <span class="keyword">self</span>.string);</div><div class="line">    </div><div class="line">    [stringM appendString:<span class="string">@"1234"</span>];</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"string:%@"</span>, <span class="keyword">self</span>.string);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>打印的日志</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">2017<span class="selector-tag">-03-06</span> 16<span class="selector-pseudo">:43</span><span class="selector-pseudo">:45.155362+0800</span> <span class="selector-tag">Test</span><span class="selector-attr">[4483:168365]</span> <span class="selector-tag">string</span><span class="selector-pseudo">:The</span> <span class="selector-tag">Flash</span></div><div class="line">2017<span class="selector-tag">-03-06</span> 16<span class="selector-pseudo">:43</span><span class="selector-pseudo">:45.155546+0800</span> <span class="selector-tag">Test</span><span class="selector-attr">[4483:168365]</span> <span class="selector-tag">string</span><span class="selector-pseudo">:The</span> <span class="selector-tag">Flash1234</span></div></pre></td></tr></table></figure>
+<p>所以使用strong的话，如果这个属性指向一个可变对象，当可变对象修改时，这个属性值也会被修改。</p>
+<h5 id="2-property-nonatomic-copy-NSMutableString-strM-这种写法会出什么问题"><a href="#2-property-nonatomic-copy-NSMutableString-strM-这种写法会出什么问题" class="headerlink" title="2.@property (nonatomic, copy) NSMutableString *strM;这种写法会出什么问题?"></a>2.@property (nonatomic, copy) NSMutableString *strM;这种写法会出什么问题?</h5>
       
     </div>
 
@@ -356,7 +355,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/历程/" rel="tag">#历程</a>
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
           
         </div>
       
@@ -365,12 +364,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/11/01/podsetupfail/" rel="next" title="解决pod setup缓慢及失败的另一种方式">
+                <i class="fa fa-chevron-left"></i> 解决pod setup缓慢及失败的另一种方式
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/10/BuildHexo/" rel="prev" title="Mac上基于Github搭建Hexo博客">
-                Mac上基于Github搭建Hexo博客 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/09/27/AvoidAuditing/" rel="prev" title="上架到App Store时，如何规避审查">
+                上架到App Store时，如何规避审查 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -397,8 +400,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/08/first/"
-           data-title="写在最前面" data-url="http://yoursite.com/2016/10/08/first/">
+      <div class="ds-thread" data-thread-key="2017/03/06/CopyKey/"
+           data-title="关于copy的两个问题" data-url="http://yoursite.com/2017/03/06/CopyKey/">
       </div>
     
   </div>
@@ -489,7 +492,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-property声明NSString时为什么需要使用copy，使用strong会有什么问题？"><span class="nav-number">1.</span> <span class="nav-text">1.@property声明NSString时为什么需要使用copy，使用strong会有什么问题？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-property-nonatomic-copy-NSMutableString-strM-这种写法会出什么问题"><span class="nav-number">2.</span> <span class="nav-text">2.@property (nonatomic, copy) NSMutableString *strM;这种写法会出什么问题?</span></a></li></ol></div>
             
           </div>
         </section>
