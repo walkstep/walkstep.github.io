@@ -1,0 +1,795 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,GCD," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="看苹果的官方文档就知道GCD的用法还是蛮多的，但我们常用的其实并不多，在这里，只列出我们常用的一些用法。
+
+什么是GCD　　Grand Central Dispatch (GCD)是Apple开发的一个多核编程的较新的解决方法。它主要用于优化应用程序以支持多核处理器以及其他对称多处理系统。(更为详细的介绍可以google一下)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GCD常用用法">
+<meta property="og:url" content="http://yoursite.com/2016/10/20/GCD/index.html">
+<meta property="og:site_name" content="WalkStep's Blog">
+<meta property="og:description" content="看苹果的官方文档就知道GCD的用法还是蛮多的，但我们常用的其实并不多，在这里，只列出我们常用的一些用法。
+
+什么是GCD　　Grand Central Dispatch (GCD)是Apple开发的一个多核编程的较新的解决方法。它主要用于优化应用程序以支持多核处理器以及其他对称多处理系统。(更为详细的介绍可以google一下)">
+<meta property="og:updated_time" content="2016-10-28T03:53:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GCD常用用法">
+<meta name="twitter:description" content="看苹果的官方文档就知道GCD的用法还是蛮多的，但我们常用的其实并不多，在这里，只列出我们常用的一些用法。
+
+什么是GCD　　Grand Central Dispatch (GCD)是Apple开发的一个多核编程的较新的解决方法。它主要用于优化应用程序以支持多核处理器以及其他对称多处理系统。(更为详细的介绍可以google一下)">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> GCD常用用法 | WalkStep's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">WalkStep's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                GCD常用用法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-20T11:21:10+08:00" content="2016-10-20">
+              2016-10-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/20/GCD/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/20/GCD/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/10/20/GCD/" class="leancloud_visitors" data-flag-title="GCD常用用法">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>　　看苹果的官方文档就知道GCD的用法还是蛮多的，但我们常用的其实并不多，在这里，只列出我们常用的一些用法。</p>
+<hr>
+<h4 id="什么是GCD"><a href="#什么是GCD" class="headerlink" title="什么是GCD"></a>什么是GCD</h4><p>　　Grand Central Dispatch (GCD)是Apple开发的一个多核编程的较新的解决方法。它主要用于优化应用程序以支持多核处理器以及其他对称多处理系统。(更为详细的介绍可以google一下)<a id="more"></a></p>
+<h4 id="任务和队列概念"><a href="#任务和队列概念" class="headerlink" title="任务和队列概念"></a>任务和队列概念</h4><p>　　任务：执行某段代码所做的事<br>　　队列：用来存放任务的线性表<br>　　<br>　　<strong>任务分为：同步执行和异步执行</strong><br>　　同步执行：一个功能调用时，在没有得到结果之前，该调用就不会返回。也就是一件一件事做，做完上一件事才能做下一件事。<br>　　异步执行：一个功能异步调用时，该调用不会立即返回结果，会开启一个新的线程去执行，当得到结果时，会通过状态、通知或回调来通知调用者。在同一个时间可以做多件事情，并不需要等待。<br>　　<br>　　<strong>队列分为：串行队列和并行队列</strong><br>　　串行队列：一个任务执行完成以后才能执行下一个任务。<br>　　并行队列：多个任务可以同时执行。</p>
+<h4 id="GCD队列、任务类型及创建"><a href="#GCD队列、任务类型及创建" class="headerlink" title="GCD队列、任务类型及创建"></a>GCD队列、任务类型及创建</h4><p>　　GCD队列分为三种：main queue(主队列)、global queue(全局队列)和create queue(用户队列)<br>　　<br>　　<strong>main queue(串行队列)</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t mainQueue = dispatch_get_main_queue();</span><br></pre></td></tr></table></figure>
+<p>　　<strong>global queue(并行队列)</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br><span class="line"></span><br><span class="line">// 参数1 优先级</span><br><span class="line">DISPATCH_QUEUE_PRIORITY_DEFAULT    默认的</span><br><span class="line">DISPATCH_QUEUE_PRIORITY_HIGH       优先级高</span><br><span class="line">DISPATCH_QUEUE_PRIORITY_LOW        优先级低</span><br><span class="line">// 参数2 系统保留的参数0</span><br></pre></td></tr></table></figure>
+<p>　　<strong>create queue(可以创建串行队列或者并行队列)</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 创建串行队列(两种方法)</span><br><span class="line">dispatch_queue_t newQueue = dispatch_queue_create(&quot;com.dispatch.newQueue&quot;, NULL);</span><br><span class="line">**or**</span><br><span class="line">dispatch_queue_t newQueue = dispatch_queue_create(&quot;com.dispatch.newQueue&quot;, DISPATCH_QUEUE_SERIAL);</span><br><span class="line"></span><br><span class="line">// 创建并行队列</span><br><span class="line">dispatch_queue_t newQueue = dispatch_queue_create(&quot;com.dispatch.newQueue&quot;, DISPATCH_QUEUE_CONCURRENT);</span><br></pre></td></tr></table></figure>
+<p>　　任务分为两种：dispatch_sync(同步执行)、dispathc_async(异步执行）<br>　　<strong>dispatch_sync(同步执行)</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 创建同步执行任务</span><br><span class="line">dispatch_sync(queue, ^&#123;</span><br><span class="line">	// 操作代码</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>　　<strong>dispatch_async(异步执行)</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 创建同步执行任务</span><br><span class="line">dispatch_async(queue, ^&#123;</span><br><span class="line">	// 操作代码</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="用法示例"><a href="#用法示例" class="headerlink" title="用法示例"></a>用法示例</h4><h5 id="主队列-同步执行"><a href="#主队列-同步执行" class="headerlink" title="主队列 + 同步执行"></a>主队列 + 同步执行</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (void)mainSync &#123;</span><br><span class="line">    dispatch_queue_t mainQueue = dispatch_get_main_queue();</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;----begin&quot;);</span><br><span class="line">    </span><br><span class="line">    for (int i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">        dispatch_sync(mainQueue, ^&#123;</span><br><span class="line">            NSLog(@&quot;%@-------%d&quot;, [NSThread currentThread], i);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;----end&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2016-10-20 16:11:27.831 GCDDemo[20258:626929] ----begin</span><br></pre></td></tr></table></figure>
+<h5 id="主队列-异步执行"><a href="#主队列-异步执行" class="headerlink" title="主队列 + 异步执行"></a>主队列 + 异步执行</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (void)mainAsync &#123;</span><br><span class="line">    dispatch_queue_t mainQueue = dispatch_get_main_queue();</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;----begin&quot;);</span><br><span class="line">    </span><br><span class="line">    for (int i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">        dispatch_async(mainQueue, ^&#123;</span><br><span class="line">            NSLog(@&quot;%@-------%d&quot;, [NSThread currentThread], i);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;----end&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">2016-10-20 16:12:03.295 GCDDemo[20283:627561] ----begin</span><br><span class="line">2016-10-20 16:12:03.295 GCDDemo[20283:627561] ----end</span><br><span class="line">2016-10-20 16:12:03.300 GCDDemo[20283:627561] &lt;NSThread: 0x7ff9d1507de0&gt;&#123;number = 1, name = main&#125;-------0</span><br><span class="line">2016-10-20 16:12:03.301 GCDDemo[20283:627561] &lt;NSThread: 0x7ff9d1507de0&gt;&#123;number = 1, name = main&#125;-------1</span><br><span class="line">2016-10-20 16:12:03.301 GCDDemo[20283:627561] &lt;NSThread: 0x7ff9d1507de0&gt;&#123;number = 1, name = main&#125;-------2</span><br><span class="line">2016-10-20 16:12:03.302 GCDDemo[20283:627561] &lt;NSThread: 0x7ff9d1507de0&gt;&#123;number = 1, name = main&#125;-------3</span><br><span class="line">2016-10-20 16:12:03.302 GCDDemo[20283:627561] &lt;NSThread: 0x7ff9d1507de0&gt;&#123;number = 1, name = main&#125;-------4</span><br><span class="line">2016-10-20 16:12:03.303 GCDDemo[20283:627561] &lt;NSThread: 0x7ff9d1507de0&gt;&#123;number = 1, name = main&#125;-------5</span><br><span class="line">2016-10-20 16:12:03.303 GCDDemo[20283:627561] &lt;NSThread: 0x7ff9d1507de0&gt;&#123;number = 1, name = main&#125;-------6</span><br><span class="line">2016-10-20 16:12:03.303 GCDDemo[20283:627561] &lt;NSThread: 0x7ff9d1507de0&gt;&#123;number = 1, name = main&#125;-------7</span><br><span class="line">2016-10-20 16:12:03.304 GCDDemo[20283:627561] &lt;NSThread: 0x7ff9d1507de0&gt;&#123;number = 1, name = main&#125;-------8</span><br><span class="line">2016-10-20 16:12:03.304 GCDDemo[20283:627561] &lt;NSThread: 0x7ff9d1507de0&gt;&#123;number = 1, name = main&#125;-------9</span><br></pre></td></tr></table></figure>
+<h5 id="全局队列-同步执行"><a href="#全局队列-同步执行" class="headerlink" title="全局队列 + 同步执行"></a>全局队列 + 同步执行</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (void)globalSync &#123;</span><br><span class="line">    dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;----begin&quot;);</span><br><span class="line">    </span><br><span class="line">    for (int i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">        dispatch_sync(globalQueue, ^&#123;</span><br><span class="line">            NSLog(@&quot;%@-------%d&quot;, [NSThread currentThread], i);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;----end&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">2016-10-20 16:12:44.735 GCDDemo[20313:628185] ----begin</span><br><span class="line">2016-10-20 16:12:44.736 GCDDemo[20313:628185] &lt;NSThread: 0x7fa02ed039b0&gt;&#123;number = 1, name = main&#125;-------0</span><br><span class="line">2016-10-20 16:12:44.736 GCDDemo[20313:628185] &lt;NSThread: 0x7fa02ed039b0&gt;&#123;number = 1, name = main&#125;-------1</span><br><span class="line">2016-10-20 16:12:44.736 GCDDemo[20313:628185] &lt;NSThread: 0x7fa02ed039b0&gt;&#123;number = 1, name = main&#125;-------2</span><br><span class="line">2016-10-20 16:12:44.736 GCDDemo[20313:628185] &lt;NSThread: 0x7fa02ed039b0&gt;&#123;number = 1, name = main&#125;-------3</span><br><span class="line">2016-10-20 16:12:44.737 GCDDemo[20313:628185] &lt;NSThread: 0x7fa02ed039b0&gt;&#123;number = 1, name = main&#125;-------4</span><br><span class="line">2016-10-20 16:12:44.737 GCDDemo[20313:628185] &lt;NSThread: 0x7fa02ed039b0&gt;&#123;number = 1, name = main&#125;-------5</span><br><span class="line">2016-10-20 16:12:44.737 GCDDemo[20313:628185] &lt;NSThread: 0x7fa02ed039b0&gt;&#123;number = 1, name = main&#125;-------6</span><br><span class="line">2016-10-20 16:12:44.737 GCDDemo[20313:628185] &lt;NSThread: 0x7fa02ed039b0&gt;&#123;number = 1, name = main&#125;-------7</span><br><span class="line">2016-10-20 16:12:44.737 GCDDemo[20313:628185] &lt;NSThread: 0x7fa02ed039b0&gt;&#123;number = 1, name = main&#125;-------8</span><br><span class="line">2016-10-20 16:12:44.737 GCDDemo[20313:628185] &lt;NSThread: 0x7fa02ed039b0&gt;&#123;number = 1, name = main&#125;-------9</span><br><span class="line">2016-10-20 16:12:44.737 GCDDemo[20313:628185] ----end</span><br></pre></td></tr></table></figure>
+<h5 id="全局队列-异步执行"><a href="#全局队列-异步执行" class="headerlink" title="全局队列 + 异步执行"></a>全局队列 + 异步执行</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (void)globalAsync &#123;</span><br><span class="line">    dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;----begin&quot;);</span><br><span class="line">    </span><br><span class="line">    for (int i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">        dispatch_async(globalQueue, ^&#123;</span><br><span class="line">            NSLog(@&quot;%@-------%d&quot;, [NSThread currentThread], i);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;----end&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">2016-10-20 16:13:06.518 GCDDemo[20330:628521] ----begin</span><br><span class="line">2016-10-20 16:13:06.518 GCDDemo[20330:628521] ----end</span><br><span class="line">2016-10-20 16:13:06.518 GCDDemo[20330:628552] &lt;NSThread: 0x7fcd5ce1b970&gt;&#123;number = 2, name = (null)&#125;-------0</span><br><span class="line">2016-10-20 16:13:06.518 GCDDemo[20330:628553] &lt;NSThread: 0x7fcd5cc33530&gt;&#123;number = 5, name = (null)&#125;-------2</span><br><span class="line">2016-10-20 16:13:06.518 GCDDemo[20330:628551] &lt;NSThread: 0x7fcd5ce1b6f0&gt;&#123;number = 3, name = (null)&#125;-------1</span><br><span class="line">2016-10-20 16:13:06.519 GCDDemo[20330:628552] &lt;NSThread: 0x7fcd5ce1b970&gt;&#123;number = 2, name = (null)&#125;-------4</span><br><span class="line">2016-10-20 16:13:06.519 GCDDemo[20330:628554] &lt;NSThread: 0x7fcd5cd03e60&gt;&#123;number = 4, name = (null)&#125;-------3</span><br><span class="line">2016-10-20 16:13:06.519 GCDDemo[20330:628553] &lt;NSThread: 0x7fcd5cc33530&gt;&#123;number = 5, name = (null)&#125;-------5</span><br><span class="line">2016-10-20 16:13:06.519 GCDDemo[20330:628555] &lt;NSThread: 0x7fcd5cf0bd90&gt;&#123;number = 6, name = (null)&#125;-------6</span><br><span class="line">2016-10-20 16:13:06.519 GCDDemo[20330:628551] &lt;NSThread: 0x7fcd5ce1b6f0&gt;&#123;number = 3, name = (null)&#125;-------7</span><br><span class="line">2016-10-20 16:13:06.519 GCDDemo[20330:628556] &lt;NSThread: 0x7fcd5ce068e0&gt;&#123;number = 7, name = (null)&#125;-------8</span><br><span class="line">2016-10-20 16:13:06.519 GCDDemo[20330:628552] &lt;NSThread: 0x7fcd5ce1b970&gt;&#123;number = 2, name = (null)&#125;-------9</span><br></pre></td></tr></table></figure>
+<h5 id="用户队列-串行-同步执行"><a href="#用户队列-串行-同步执行" class="headerlink" title="用户队列(串行) + 同步执行"></a>用户队列(串行) + 同步执行</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (void)serialSync &#123;</span><br><span class="line">    dispatch_queue_t newQueue = dispatch_queue_create(&quot;com.dispatch.newQueue&quot;, DISPATCH_QUEUE_SERIAL);</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;----begin&quot;);</span><br><span class="line">    </span><br><span class="line">    for (int i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">        dispatch_sync(newQueue, ^&#123;</span><br><span class="line">            NSLog(@&quot;%@-------%d&quot;, [NSThread currentThread], i);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;----end&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">2016-10-20 16:13:40.965 GCDDemo[20353:629062] ----begin</span><br><span class="line">2016-10-20 16:13:40.966 GCDDemo[20353:629062] &lt;NSThread: 0x7f83b9408500&gt;&#123;number = 1, name = main&#125;-------0</span><br><span class="line">2016-10-20 16:13:40.966 GCDDemo[20353:629062] &lt;NSThread: 0x7f83b9408500&gt;&#123;number = 1, name = main&#125;-------1</span><br><span class="line">2016-10-20 16:13:40.966 GCDDemo[20353:629062] &lt;NSThread: 0x7f83b9408500&gt;&#123;number = 1, name = main&#125;-------2</span><br><span class="line">2016-10-20 16:13:40.967 GCDDemo[20353:629062] &lt;NSThread: 0x7f83b9408500&gt;&#123;number = 1, name = main&#125;-------3</span><br><span class="line">2016-10-20 16:13:40.967 GCDDemo[20353:629062] &lt;NSThread: 0x7f83b9408500&gt;&#123;number = 1, name = main&#125;-------4</span><br><span class="line">2016-10-20 16:13:40.967 GCDDemo[20353:629062] &lt;NSThread: 0x7f83b9408500&gt;&#123;number = 1, name = main&#125;-------5</span><br><span class="line">2016-10-20 16:13:40.967 GCDDemo[20353:629062] &lt;NSThread: 0x7f83b9408500&gt;&#123;number = 1, name = main&#125;-------6</span><br><span class="line">2016-10-20 16:13:40.967 GCDDemo[20353:629062] &lt;NSThread: 0x7f83b9408500&gt;&#123;number = 1, name = main&#125;-------7</span><br><span class="line">2016-10-20 16:13:40.967 GCDDemo[20353:629062] &lt;NSThread: 0x7f83b9408500&gt;&#123;number = 1, name = main&#125;-------8</span><br><span class="line">2016-10-20 16:13:40.968 GCDDemo[20353:629062] &lt;NSThread: 0x7f83b9408500&gt;&#123;number = 1, name = main&#125;-------9</span><br><span class="line">2016-10-20 16:13:40.968 GCDDemo[20353:629062] ----end</span><br></pre></td></tr></table></figure>
+<h5 id="用户队列-串行-异步执行"><a href="#用户队列-串行-异步执行" class="headerlink" title="用户队列(串行) + 异步执行"></a>用户队列(串行) + 异步执行</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (void)serialAsync &#123;</span><br><span class="line">    dispatch_queue_t newQueue = dispatch_queue_create(&quot;com.dispatch.newQueue&quot;, DISPATCH_QUEUE_SERIAL);</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;----begin&quot;);</span><br><span class="line">    </span><br><span class="line">    for (int i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">        dispatch_async(newQueue, ^&#123;</span><br><span class="line">            NSLog(@&quot;%@-------%d&quot;, [NSThread currentThread], i);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;----end&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">2016-10-20 16:14:13.925 GCDDemo[20376:629631] ----begin</span><br><span class="line">2016-10-20 16:14:13.926 GCDDemo[20376:629631] ----end</span><br><span class="line">2016-10-20 16:14:13.926 GCDDemo[20376:629660] &lt;NSThread: 0x7f9b5ff09e60&gt;&#123;number = 2, name = (null)&#125;-------0</span><br><span class="line">2016-10-20 16:14:13.926 GCDDemo[20376:629660] &lt;NSThread: 0x7f9b5ff09e60&gt;&#123;number = 2, name = (null)&#125;-------1</span><br><span class="line">2016-10-20 16:14:13.927 GCDDemo[20376:629660] &lt;NSThread: 0x7f9b5ff09e60&gt;&#123;number = 2, name = (null)&#125;-------2</span><br><span class="line">2016-10-20 16:14:13.927 GCDDemo[20376:629660] &lt;NSThread: 0x7f9b5ff09e60&gt;&#123;number = 2, name = (null)&#125;-------3</span><br><span class="line">2016-10-20 16:14:13.927 GCDDemo[20376:629660] &lt;NSThread: 0x7f9b5ff09e60&gt;&#123;number = 2, name = (null)&#125;-------4</span><br><span class="line">2016-10-20 16:14:13.927 GCDDemo[20376:629660] &lt;NSThread: 0x7f9b5ff09e60&gt;&#123;number = 2, name = (null)&#125;-------5</span><br><span class="line">2016-10-20 16:14:13.927 GCDDemo[20376:629660] &lt;NSThread: 0x7f9b5ff09e60&gt;&#123;number = 2, name = (null)&#125;-------6</span><br><span class="line">2016-10-20 16:14:13.927 GCDDemo[20376:629660] &lt;NSThread: 0x7f9b5ff09e60&gt;&#123;number = 2, name = (null)&#125;-------7</span><br><span class="line">2016-10-20 16:14:13.928 GCDDemo[20376:629660] &lt;NSThread: 0x7f9b5ff09e60&gt;&#123;number = 2, name = (null)&#125;-------8</span><br><span class="line">2016-10-20 16:14:13.928 GCDDemo[20376:629660] &lt;NSThread: 0x7f9b5ff09e60&gt;&#123;number = 2, name = (null)&#125;-------9</span><br></pre></td></tr></table></figure>
+<h5 id="用户队列-并行-同步执行"><a href="#用户队列-并行-同步执行" class="headerlink" title="用户队列(并行) + 同步执行"></a>用户队列(并行) + 同步执行</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (void)concurrentSync &#123;</span><br><span class="line">    dispatch_queue_t newQueue = dispatch_queue_create(&quot;com.dispatch.newQueue&quot;, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;----begin&quot;);</span><br><span class="line">    </span><br><span class="line">    for (int i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">        dispatch_sync(newQueue, ^&#123;</span><br><span class="line">            NSLog(@&quot;%@-------%d&quot;, [NSThread currentThread], i);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;----end&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">2016-10-20 16:14:40.857 GCDDemo[20400:630101] ----begin</span><br><span class="line">2016-10-20 16:14:40.857 GCDDemo[20400:630101] &lt;NSThread: 0x7fbea8d04530&gt;&#123;number = 1, name = main&#125;-------0</span><br><span class="line">2016-10-20 16:14:40.857 GCDDemo[20400:630101] &lt;NSThread: 0x7fbea8d04530&gt;&#123;number = 1, name = main&#125;-------1</span><br><span class="line">2016-10-20 16:14:40.857 GCDDemo[20400:630101] &lt;NSThread: 0x7fbea8d04530&gt;&#123;number = 1, name = main&#125;-------2</span><br><span class="line">2016-10-20 16:14:40.858 GCDDemo[20400:630101] &lt;NSThread: 0x7fbea8d04530&gt;&#123;number = 1, name = main&#125;-------3</span><br><span class="line">2016-10-20 16:14:40.858 GCDDemo[20400:630101] &lt;NSThread: 0x7fbea8d04530&gt;&#123;number = 1, name = main&#125;-------4</span><br><span class="line">2016-10-20 16:14:40.858 GCDDemo[20400:630101] &lt;NSThread: 0x7fbea8d04530&gt;&#123;number = 1, name = main&#125;-------5</span><br><span class="line">2016-10-20 16:14:40.858 GCDDemo[20400:630101] &lt;NSThread: 0x7fbea8d04530&gt;&#123;number = 1, name = main&#125;-------6</span><br><span class="line">2016-10-20 16:14:40.858 GCDDemo[20400:630101] &lt;NSThread: 0x7fbea8d04530&gt;&#123;number = 1, name = main&#125;-------7</span><br><span class="line">2016-10-20 16:14:40.858 GCDDemo[20400:630101] &lt;NSThread: 0x7fbea8d04530&gt;&#123;number = 1, name = main&#125;-------8</span><br><span class="line">2016-10-20 16:14:40.858 GCDDemo[20400:630101] &lt;NSThread: 0x7fbea8d04530&gt;&#123;number = 1, name = main&#125;-------9</span><br><span class="line">2016-10-20 16:14:40.913 GCDDemo[20400:630101] ----end</span><br></pre></td></tr></table></figure>
+<h5 id="用户队列-并行-异步执行"><a href="#用户队列-并行-异步执行" class="headerlink" title="用户队列(并行) + 异步执行"></a>用户队列(并行) + 异步执行</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (void)concurrentAsync &#123;</span><br><span class="line">    dispatch_queue_t newQueue = dispatch_queue_create(&quot;com.dispatch.newQueue&quot;, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;----begin&quot;);</span><br><span class="line">    </span><br><span class="line">    for (int i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">        dispatch_async(newQueue, ^&#123;</span><br><span class="line">            NSLog(@&quot;%@-------%d&quot;, [NSThread currentThread], i);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;----end&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">2016-10-20 16:15:36.636 GCDDemo[20452:631061] ----begin</span><br><span class="line">2016-10-20 16:15:36.636 GCDDemo[20452:631061] ----end</span><br><span class="line">2016-10-20 16:15:36.637 GCDDemo[20452:631088] &lt;NSThread: 0x7fa27e709460&gt;&#123;number = 2, name = (null)&#125;-------0</span><br><span class="line">2016-10-20 16:15:36.637 GCDDemo[20452:631089] &lt;NSThread: 0x7fa27e508ce0&gt;&#123;number = 3, name = (null)&#125;-------1</span><br><span class="line">2016-10-20 16:15:36.637 GCDDemo[20452:631091] &lt;NSThread: 0x7fa27e61d140&gt;&#123;number = 5, name = (null)&#125;-------3</span><br><span class="line">2016-10-20 16:15:36.637 GCDDemo[20452:631090] &lt;NSThread: 0x7fa27e635340&gt;&#123;number = 4, name = (null)&#125;-------2</span><br><span class="line">2016-10-20 16:15:36.637 GCDDemo[20452:631088] &lt;NSThread: 0x7fa27e709460&gt;&#123;number = 2, name = (null)&#125;-------4</span><br><span class="line">2016-10-20 16:15:36.637 GCDDemo[20452:631089] &lt;NSThread: 0x7fa27e508ce0&gt;&#123;number = 3, name = (null)&#125;-------5</span><br><span class="line">2016-10-20 16:15:36.637 GCDDemo[20452:631091] &lt;NSThread: 0x7fa27e61d140&gt;&#123;number = 5, name = (null)&#125;-------6</span><br><span class="line">2016-10-20 16:15:36.637 GCDDemo[20452:631092] &lt;NSThread: 0x7fa27e70b7c0&gt;&#123;number = 6, name = (null)&#125;-------8</span><br><span class="line">2016-10-20 16:15:36.637 GCDDemo[20452:631090] &lt;NSThread: 0x7fa27e635340&gt;&#123;number = 4, name = (null)&#125;-------7</span><br><span class="line">2016-10-20 16:15:36.638 GCDDemo[20452:631088] &lt;NSThread: 0x7fa27e709460&gt;&#123;number = 2, name = (null)&#125;-------9</span><br></pre></td></tr></table></figure>
+<h5 id="dispatch-group"><a href="#dispatch-group" class="headerlink" title="dispatch_group"></a>dispatch_group</h5><p>　　有时我们有多个任务需要执行，当所有的任务执行完成后，然后再去做其他的事，这是dispatch_group则显得格外的方便，我们可以在dispath_group里异步执行任务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">- (void)group &#123;</span><br><span class="line">    // 创建一个组</span><br><span class="line">    dispatch_group_t group = dispatch_group_create();</span><br><span class="line">    </span><br><span class="line">    // 创建一个队列，该队列决定组是并行还是串行</span><br><span class="line">    dispatch_queue_t queue = dispatch_queue_create(&quot;com.queue.newQueue&quot;, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">    </span><br><span class="line">    // 耗时的线程1</span><br><span class="line">    dispatch_group_async(group, queue, ^&#123;</span><br><span class="line">        </span><br><span class="line">        int k = 5;</span><br><span class="line">        </span><br><span class="line">        while (k--) &#123;</span><br><span class="line">            </span><br><span class="line">            NSLog(@&quot;k1: %d&quot;, k);</span><br><span class="line">            [NSThread sleepForTimeInterval:1];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    // 耗时的线程2</span><br><span class="line">    dispatch_group_async(group, queue, ^&#123;</span><br><span class="line">        </span><br><span class="line">        int k = 5;</span><br><span class="line">        </span><br><span class="line">        while (k--) &#123;</span><br><span class="line">            </span><br><span class="line">            NSLog(@&quot;k2: %d&quot;, k);</span><br><span class="line">            [NSThread sleepForTimeInterval:1];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    // 当组中所有的任务都执行完后得到一个通知</span><br><span class="line">    dispatch_group_notify(group, queue, ^&#123;</span><br><span class="line">        </span><br><span class="line">        NSLog(@&quot;执行完成&quot;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">2016-10-20 16:36:41.591 GCDDemo[20563:639355] k1: 4</span><br><span class="line">2016-10-20 16:36:41.591 GCDDemo[20563:639353] k2: 4</span><br><span class="line">2016-10-20 16:36:42.664 GCDDemo[20563:639353] k2: 3</span><br><span class="line">2016-10-20 16:36:42.664 GCDDemo[20563:639355] k1: 3</span><br><span class="line">2016-10-20 16:36:43.731 GCDDemo[20563:639355] k1: 2</span><br><span class="line">2016-10-20 16:36:43.731 GCDDemo[20563:639353] k2: 2</span><br><span class="line">2016-10-20 16:36:44.806 GCDDemo[20563:639353] k2: 1</span><br><span class="line">2016-10-20 16:36:44.806 GCDDemo[20563:639355] k1: 1</span><br><span class="line">2016-10-20 16:36:45.879 GCDDemo[20563:639353] k2: 0</span><br><span class="line">2016-10-20 16:36:45.881 GCDDemo[20563:639355] k1: 0</span><br><span class="line">2016-10-20 16:36:46.882 GCDDemo[20563:639355] 执行完成</span><br></pre></td></tr></table></figure>
+<h5 id="dispatch-apply"><a href="#dispatch-apply" class="headerlink" title="dispatch_apply"></a>dispatch_apply</h5><p>　　多次执行一段代码，高效执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (void)apply &#123;</span><br><span class="line">    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br><span class="line">    </span><br><span class="line">    dispatch_async(queue, ^&#123;</span><br><span class="line">        </span><br><span class="line">        // 高效率的执行</span><br><span class="line">        dispatch_apply(10, queue, ^(size_t index) &#123;</span><br><span class="line">            </span><br><span class="line">            NSLog(@&quot;%ld&quot;, index);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">2016-10-20 16:40:19.713 GCDDemo[20589:640961] 1</span><br><span class="line">2016-10-20 16:40:19.713 GCDDemo[20589:640963] 0</span><br><span class="line">2016-10-20 16:40:19.713 GCDDemo[20589:640960] 2</span><br><span class="line">2016-10-20 16:40:19.713 GCDDemo[20589:640965] 3</span><br><span class="line">2016-10-20 16:40:19.713 GCDDemo[20589:640961] 4</span><br><span class="line">2016-10-20 16:40:19.713 GCDDemo[20589:640963] 5</span><br><span class="line">2016-10-20 16:40:19.714 GCDDemo[20589:640960] 6</span><br><span class="line">2016-10-20 16:40:19.714 GCDDemo[20589:640965] 7</span><br><span class="line">2016-10-20 16:40:19.714 GCDDemo[20589:640961] 8</span><br><span class="line">2016-10-20 16:40:19.714 GCDDemo[20589:640963] 9</span><br></pre></td></tr></table></figure>
+<h5 id="dispatch-after"><a href="#dispatch-after" class="headerlink" title="dispatch_after"></a>dispatch_after</h5><p>　　延时提交任务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 延迟两秒提交任务</span><br><span class="line">dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^&#123;</span><br><span class="line">    // 回到主队列执行代码</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h5 id="dispathc-once"><a href="#dispathc-once" class="headerlink" title="dispathc_once"></a>dispathc_once</h5><p>　　整个程序运行中只执行一次，可以用来定义单例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">static dispatch_once_t onceToken;</span><br><span class="line">dispatch_once(&amp;onceToken, ^&#123;</span><br><span class="line">    // 此处代码只执行一次</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 使用dispatch_onece来定义单例</span><br><span class="line">static Singleton *singleten = nil;</span><br><span class="line">+ (instancetype)shared</span><br><span class="line">&#123;</span><br><span class="line">    static dispatch_once_t onceToken;</span><br><span class="line">    dispatch_once(&amp;onceToken, ^&#123;</span><br><span class="line">        // 确保block的代码只被执行一次</span><br><span class="line">        singleten = [[self alloc] init];</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    return singleten;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>欢迎吐槽，同时也欢迎转载，如转载请保留原文地址：<br><a href="https://walkstep.github.io/2016/10/20/GCD" target="_blank" rel="noopener">https://walkstep.github.io/2016/10/20/GCD</a></strong></p>
+<p><strong>更新于2016年10月20日</strong></p>
+<p>　　</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+            <a href="/tags/GCD/" rel="tag">#GCD</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/13/RevealIntegrationGuide/" rel="next" title="Reveal集成指南">
+                <i class="fa fa-chevron-left"></i> Reveal集成指南
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/21/NSNotification/" rel="prev" title="说说通知(NSNotification)的使用">
+                说说通知(NSNotification)的使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/20/GCD/"
+           data-title="GCD常用用法" data-url="http://yoursite.com/2016/10/20/GCD/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="WalkStep" />
+          <p class="site-author-name" itemprop="name">WalkStep</p>
+          <p class="site-description motion-element" itemprop="description">人生最后悔的事情就是：我本可以</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是GCD"><span class="nav-number">1.</span> <span class="nav-text">什么是GCD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#任务和队列概念"><span class="nav-number">2.</span> <span class="nav-text">任务和队列概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GCD队列、任务类型及创建"><span class="nav-number">3.</span> <span class="nav-text">GCD队列、任务类型及创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用法示例"><span class="nav-number">4.</span> <span class="nav-text">用法示例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#主队列-同步执行"><span class="nav-number">4.1.</span> <span class="nav-text">主队列 + 同步执行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#主队列-异步执行"><span class="nav-number">4.2.</span> <span class="nav-text">主队列 + 异步执行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#全局队列-同步执行"><span class="nav-number">4.3.</span> <span class="nav-text">全局队列 + 同步执行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#全局队列-异步执行"><span class="nav-number">4.4.</span> <span class="nav-text">全局队列 + 异步执行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用户队列-串行-同步执行"><span class="nav-number">4.5.</span> <span class="nav-text">用户队列(串行) + 同步执行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用户队列-串行-异步执行"><span class="nav-number">4.6.</span> <span class="nav-text">用户队列(串行) + 异步执行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用户队列-并行-同步执行"><span class="nav-number">4.7.</span> <span class="nav-text">用户队列(并行) + 同步执行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用户队列-并行-异步执行"><span class="nav-number">4.8.</span> <span class="nav-text">用户队列(并行) + 异步执行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dispatch-group"><span class="nav-number">4.9.</span> <span class="nav-text">dispatch_group</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dispatch-apply"><span class="nav-number">4.10.</span> <span class="nav-text">dispatch_apply</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dispatch-after"><span class="nav-number">4.11.</span> <span class="nav-text">dispatch_after</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dispathc-once"><span class="nav-number">4.12.</span> <span class="nav-text">dispathc_once</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">WalkStep</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"walkstep"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("aKqtMHKXIXWgyyweRPICvTqg-gzGzoHsz", "je3Vbw4fDm93MT9XQfEkdMS4");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
