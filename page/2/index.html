@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ios,cocoapods," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -84,20 +84,12 @@
 
 
 
-<meta name="description" content="首先讲讲pod setup的作用原理是什么，pod setup本质其实就是将https://github.com/CocoaPods/Specs上的项目克隆到/Users/用户名/.cocoapods/repos目录下，若此目录下已经有这个项目，使用pod setup命令则会将项目更新到最新的状态。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="解决pod setup缓慢及失败的另一种方式">
-<meta property="og:url" content="http://yoursite.com/2016/11/01/podsetupfail/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="WalkStep's Blog">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="WalkStep's Blog">
-<meta property="og:description" content="首先讲讲pod setup的作用原理是什么，pod setup本质其实就是将https://github.com/CocoaPods/Specs上的项目克隆到/Users/用户名/.cocoapods/repos目录下，若此目录下已经有这个项目，使用pod setup命令则会将项目更新到最新的状态。">
-<meta property="og:image" content="http://oetpv7kic.bkt.clouddn.com/podsetupfail1.png">
-<meta property="og:image" content="http://oetpv7kic.bkt.clouddn.com/podsetupfail2.png">
-<meta property="og:image" content="http://oetpv7kic.bkt.clouddn.com/podsetupfail3.png">
-<meta property="og:updated_time" content="2017-09-26T00:44:59.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="解决pod setup缓慢及失败的另一种方式">
-<meta name="twitter:description" content="首先讲讲pod setup的作用原理是什么，pod setup本质其实就是将https://github.com/CocoaPods/Specs上的项目克隆到/Users/用户名/.cocoapods/repos目录下，若此目录下已经有这个项目，使用pod setup命令则会将项目更新到最新的状态。">
-<meta name="twitter:image" content="http://oetpv7kic.bkt.clouddn.com/podsetupfail1.png">
+<meta name="twitter:title" content="WalkStep's Blog">
 
 
 
@@ -115,7 +107,7 @@
   };
 </script>
 
-  <title> 解决pod setup缓慢及失败的另一种方式 | WalkStep's Blog </title>
+  <title> WalkStep's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -136,7 +128,9 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -233,9 +227,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
   
@@ -255,7 +249,10 @@
             
             
               
-                解决pod setup缓慢及失败的另一种方式
+                
+                <a class="post-title-link" href="/2016/10/20/GCD/" itemprop="url">
+                  GCD常用用法
+                </a>
               
             
           </h1>
@@ -267,8 +264,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-01T09:04:16+08:00" content="2016-11-01">
-              2016-11-01
+            <time itemprop="dateCreated" datetime="2016-10-20T11:21:10+08:00" content="2016-10-20">
+              2016-10-20
             </time>
           </span>
 
@@ -297,8 +294,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/11/01/podsetupfail/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/01/podsetupfail/" itemprop="commentsCount"></span>
+                <a href="/2016/10/20/GCD/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/20/GCD/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -308,7 +305,7 @@
 
           
           
-             <span id="/2016/11/01/podsetupfail/" class="leancloud_visitors" data-flag-title="解决pod setup缓慢及失败的另一种方式">
+             <span id="/2016/10/20/GCD/" class="leancloud_visitors" data-flag-title="GCD常用用法">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -330,67 +327,447 @@
       
 
       
-        <p>　　首先讲讲pod setup的作用原理是什么，pod setup本质其实就是将<a href="https://github.com/CocoaPods/Specs" target="_blank" rel="external">https://github.com/CocoaPods/Specs</a>上的项目克隆到/Users/用户名/.cocoapods/repos目录下，若此目录下已经有这个项目，使用pod setup命令则会将项目更新到最新的状态。<a id="more"></a><br>　　<br>　　前两天由于搜索不出一些第三方库的最新版本，需要更新cocoapods库，使用pod setup着实被坑了一大把(以前使用pod setup也还好)，因为我没有使用网线，用的是WiFi，网络一不稳定，就会导致pod setup失败，换成网线pod setup，下载速度也是10几k每秒。尝试过直接git clone仓库，尝试过使用coding和oschina上的镜像git clone，还尝试过fork Specs项目后，使用GitHub Desktop克隆，都是中途失败了，直接下载Specs的zip包，速度极其慢，而且zip包里不包含git文件，最终可能会导致第三方库不可用。<br>　　<br>　　最终解决的方法是下载zip包，将其解压后，从其他人那里拷贝一份git文件放到解压后的文件中，然后将整个文件拖到/Users/用户名/.cocoapods/repos目录下，详细步骤如下：<br>　　<br>　　1.从<a href="https://github.com/CocoaPods/Specs" target="_blank" rel="external">https://github.com/CocoaPods/Specs</a>下载zip包，目前是104M左右，不翻墙的话用电脑下载会比较慢，不过可以使用手机流量下载，4G网的话，速度大概400k/s的样子，下载完成后把zip包传到mac上<br>　　<br>　　2.将你的mac设置为显示隐藏文件，解压zip包，这时文件夹名为Specs-master，将其改为master，其目录如下：<img src="http://oetpv7kic.bkt.clouddn.com/podsetupfail1.png" alt=""><br>　　<br>　　3.从其他iOS开发人员那里拷贝.git文件和.gitignore文件，如下图，路径是/Users/用户名/.cocoapods/repos/master<img src="http://oetpv7kic.bkt.clouddn.com/podsetupfail2.png" alt=""><br>　　4.将拷贝好的两个文件拖到你的master文件夹中，将master文件夹拖到/Users/用户名/.cocoapods/repos路径下，这样你的目录将会是这样：<img src="http://oetpv7kic.bkt.clouddn.com/podsetupfail3.png" alt=""><br>　　5.执行pod setup，等待其完成<br>　　这样pod setup就完成了，希望能够帮到小伙伴们<br>　　<br><strong>欢迎吐槽，同时也欢迎转载，如转载请保留原文地址：<br><a href="https://walkstep.github.io/2016/11/23/podsetupfail" target="_blank" rel="external">https://walkstep.github.io/2016/11/23/podsetupfail</a></strong></p>
-<p><strong>更新于2016年11月23日</strong></p>
-
-      
-    </div>
-
-    <div>
-      
+        
+          <p>　　看苹果的官方文档就知道GCD的用法还是蛮多的，但我们常用的其实并不多，在这里，只列出我们常用的一些用法。</p>
+<hr>
+<h4 id="什么是GCD"><a href="#什么是GCD" class="headerlink" title="什么是GCD"></a>什么是GCD</h4><p>　　Grand Central Dispatch (GCD)是Apple开发的一个多核编程的较新的解决方法。它主要用于优化应用程序以支持多核处理器以及其他对称多处理系统。(更为详细的介绍可以google一下)
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/20/GCD/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
 
     <div>
       
-        
+    </div>
 
+    <div>
       
     </div>
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/ios/" rel="tag">#ios</a>
-          
-            <a href="/tags/cocoapods/" rel="tag">#cocoapods</a>
-          
-        </div>
+
       
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/10/28/UITabBarItemAnimation/" rel="next" title="UITabBar动画">
-                <i class="fa fa-chevron-left"></i> UITabBar动画
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/06/CopyKey/" rel="prev" title="关于copy的两个问题">
-                关于copy的两个问题 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
+    
+      
 
-    <div class="post-spread">
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/13/RevealIntegrationGuide/" itemprop="url">
+                  Reveal集成指南
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-13T10:45:13+08:00" content="2016-10-13">
+              2016-10-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/翻译/" itemprop="url" rel="index">
+                    <span itemprop="name">翻译</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/13/RevealIntegrationGuide/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/13/RevealIntegrationGuide/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/10/13/RevealIntegrationGuide/" class="leancloud_visitors" data-flag-title="Reveal集成指南">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>　　很早就听过Reveal，对iOS Developer来说简直是一款神器。这次有时间打算体验一下Reveal，于是去官网看了下，没有中文使用文档，google了一下使用方法，博客里写得大同小异，有的简直就是一模一样，关键是有些还讲不清楚。于是，就产生了下面的文章。</p>
+<hr>
+<p>　　目前计划翻译Reveal官网 <a href="http://support.revealapp.com/kb/getting-started">Konowledege Base/Getting Started</a>下的八篇文章，因为水平有限，请大家多多指教，如有错误请帮忙指出。<br>　　以下内容翻译自<a href="http://support.revealapp.com/kb/getting-started/reveal-integration-guide">Reveal Integration Guide</a>，官方更新于2016-9-23。文中链接暂时链接到官方英文文档，后续会慢慢更新。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/13/RevealIntegrationGuide/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
       
     </div>
-  </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/10/BuildHexo/" itemprop="url">
+                  Mac上基于Github搭建Hexo博客
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-10T10:12:01+08:00" content="2016-10-10">
+              2016-10-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/折腾/" itemprop="url" rel="index">
+                    <span itemprop="name">折腾</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/10/BuildHexo/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/10/BuildHexo/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/10/10/BuildHexo/" class="leancloud_visitors" data-flag-title="Mac上基于Github搭建Hexo博客">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>　　无意之中，发现了基于NexT主题的Hexo博客，很喜欢这种大量留白的博客样式，于是自己着手搭建一个Hexo博客，现在分享一下搭建的过程。</p>
+<hr>
+<h4 id="什么是Hexo"><a href="#什么是Hexo" class="headerlink" title="什么是Hexo"></a>什么是Hexo</h4><p>　　Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/10/BuildHexo/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/08/first/" itemprop="url">
+                  写在最前面
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-08T15:53:36+08:00" content="2016-10-08">
+              2016-10-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/闲谈/" itemprop="url" rel="index">
+                    <span itemprop="name">闲谈</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/08/first/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/08/first/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/10/08/first/" class="leancloud_visitors" data-flag-title="写在最前面">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>　终于拥有自己的个人博客了！</p>
+<hr>
+<p>　　闲时比较喜欢看别人的博客，在学习知识的同时，也在心里为博主默默点赞。一是钦佩作者的毅力，能够在忙完工作之后还长期更新博客；二是感叹作者的文采，一篇好的博客，并非一定是长篇大论，更重要的在于是否简单易懂，能做到这一点比较不容易。
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/08/first/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
           </div>
@@ -398,14 +775,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/11/01/podsetupfail/"
-           data-title="解决pod setup缓慢及失败的另一种方式" data-url="http://yoursite.com/2016/11/01/podsetupfail/">
-      </div>
-    
-  </div>
-
 
         </div>
         
@@ -425,17 +794,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.png"
@@ -485,17 +845,6 @@
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <p class="post-toc-empty">此文章未包含目录</p>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -592,10 +941,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
 
   
 
