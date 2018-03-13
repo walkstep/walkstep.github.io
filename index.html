@@ -250,162 +250,6 @@
             
               
                 
-                <a class="post-title-link" href="/2018/03/13/AppCatalog/" itemprop="url">
-                  AppCatalog
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-03-13T09:27:21+08:00" content="2018-03-13">
-              2018-03-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2018/03/13/AppCatalog/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/03/13/AppCatalog/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2018/03/13/AppCatalog/" class="leancloud_visitors" data-flag-title="AppCatalog">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>​    做过不少项目，今天来谈谈App的目录结构。</p>
-<p>​    <img src="http://oetpv7kic.bkt.clouddn.com/AppCatalog.png" alt="AppCatalog1"><br>&lt;! –more–&gt;</p>
-<p>#####1.Macro</p>
-<p>　　主要用来放一些宏定义文件，基本包含以下4个文件</p>
-<ul>
-<li>AppMacro：和App相关的一些宏定义可以放这里，例如服务器地址切换、枚举</li>
-<li>UtilsMacro: 这里放一些项目中需要用到的方法宏定义，例如获取屏幕的宽高，设置颜色值等</li>
-<li>NotificationMacro：这里放通知相关的宏定义</li>
-<li>LibraryMacro：这里放一些第三方的key，如极光推送、微信、QQ等等</li>
-</ul>
-<p>#####2.Libraries<br>　　这里放那些无法使用CocoaPods管理的第三方库，还有那些需要根据项目要求去改动的第三方库。</p>
-<p>#####3.Categories<br>　　这里放类别，特别是项目中经常使用到的控件，每次都需要设置很多属性，我们可以把它写成类别，用过使用类别来完成属性的设置。</p>
-<p>#####4.Utils<br>　　项目中使用到的工具类可以放在这里，例如字符串处理，图片处理等，可能会有人问这和下面的Helpers有什么区别呢？区别就在于，这个Utils的文件可以脱离项目，把它拖到另外一个项目里，它也可以使用，项目于这个文件夹里的东西不依赖于项目，可移植性强。</p>
-<p>#####5.Helpers<br>　　这个里面放项目中需要使用到的帮助类，大多依赖于项目，可移植性小。我下面列了两项，大家可以根据需要列出分类</p>
-<ul>
-<li>LibraryHelpers：对需要使用到的第三方库方法进一步封装</li>
-<li>OtherHelpers：这里放一些不属于上述分类的其他帮助类</li>
-</ul>
-<p>#####6.DataService<br>　　这里放数据请求类，也可以放一些对请求到的数据进一步进行处理的方法。</p>
-<p>#####7.Models<br>　　放数据模型</p>
-<p>#####8.General</p>
-<ul>
-<li>Cells：自定义的Cell</li>
-<li>ViewModels：MVVM模式里，放ViewModel，MVC里可以不需要</li>
-<li>Views：自定义视图</li>
-<li>Controllers：控制器</li>
-</ul>
-<p>　　一个合理的目录结构，可以让人一眼就知道各个目录是干啥用的，也方便后面的开发者知道代码所在位置。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2018/03/08/BilibiliLogin/" itemprop="url">
                   哔哩哔哩app登录界面
                 </a>
@@ -750,6 +594,144 @@
           <p>　　在知乎上看过这样的一个段子，大意是这样：如何评价iOS和安卓？有大神答，安卓：这个权限给不给，不给就不给你用；iOS：我能获取你这个权限吗?<br>　　做iOS的同学都会遇到app审核不通过的情况，可能有人说，我就没有遇到过，那说明你的iOS生涯是不完整的，iOS生涯怎么能缺少苹果审核团队给你发的审核不通过的通知邮件呢。<br>　　<br>　　相对于安卓，iOS上的流氓软件极少，一部分原因是iOS是闭环的，还有一部分原因就是苹果的审核机制，只要违反规定，就会审核不通过，严重时更为做下架处理。可是实际开发中，难免会遇到可能会触碰到规定的时候，审核不通过，直接影响到app上线的时间，这时就要规避审查，下面讲讲如何规避审查。
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/09/27/AvoidAuditing/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/13/AppCatalog/" itemprop="url">
+                  App目录
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-13T09:27:21+08:00" content="2017-07-13">
+              2017-07-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/07/13/AppCatalog/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/07/13/AppCatalog/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/07/13/AppCatalog/" class="leancloud_visitors" data-flag-title="App目录">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>​    做过不少项目，今天来谈谈App的目录结构。<br>​    <img src="http://oetpv7kic.bkt.clouddn.com/AppCatalog.png" alt="AppCatalog1"></p>
+<h5 id="1-Macro"><a href="#1-Macro" class="headerlink" title="1.Macro"></a>1.Macro</h5><p>　　主要用来放一些宏定义文件，基本包含以下4个文件</p>
+<ul>
+<li>AppMacro：和App相关的一些宏定义可以放这里，例如服务器地址切换、枚举</li>
+<li>UtilsMacro: 这里放一些项目中需要用到的方法宏定义，例如获取屏幕的宽高，设置颜色值等</li>
+<li>NotificationMacro：这里放通知相关的宏定义</li>
+<li>LibraryMacro：这里放一些第三方的key，如极光推送、微信、QQ等等</li>
+</ul>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/07/13/AppCatalog/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
